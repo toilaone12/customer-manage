@@ -18,8 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::prefix('admin')->group(function(){
-        Route::get('/list', [CustomerController::class, 'list'])->name('customer.list');
-        Route::get('/insert', [CustomerController::class, 'insert'])->name('customer.insert');
-        Route::post('/add', [CustomerController::class, 'add'])->name('customer.add');
+        Route::get('/list', [CustomerController::class, 'list'])->name('customer.list'); //danh sach
+        Route::get('/insert', [CustomerController::class, 'insert'])->name('customer.insert'); //form them
+        Route::post('/add', [CustomerController::class, 'add'])->name('customer.add'); //them
+        Route::get('/edit', [CustomerController::class, 'edit'])->name('customer.edit'); //form sua
+        Route::post('/update', [CustomerController::class, 'update'])->name('customer.update'); //sua
+        Route::get('/delete', [CustomerController::class, 'delete'])->name('customer.delete'); //xoa
     });
 });
