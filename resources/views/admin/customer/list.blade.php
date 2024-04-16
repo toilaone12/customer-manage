@@ -3,11 +3,11 @@
 <!-- partial -->
 <div class="main-panel">
     <div class="content-wrapper">
+        <h3 class="mb-5">Danh sách khách hàng</h3>
         <table id="myTable" class="display" style="width:100%">
             <thead>
                 <tr>
                     <th>STT</th>
-                    <th>Mã khách hàng</th>
                     <th>Tên khách hàng</th>
                     <th>Phân loại</th>
                     <th>Địa chỉ</th>
@@ -30,7 +30,6 @@
                 @endphp
                 <tr>
                     <td>{{$i}}</td>
-                    <td>{{$one->maKH}}</td>
                     <td>{{$one->tenKH}}</td>
                     <td>{{$one->phanLoai}}</td>
                     <td>{{$one->diaChi}}</td>
@@ -41,8 +40,8 @@
                     <td>{{$one->moTa}}</td>
                     <td>{{$one->yeuCau}}</td>
                     <td>
-                        <a href="{{route('customer.edit',['id' => $one->idKH])}}" class="btn btn-success d-block m-auto px-0"><i class="fa-solid fs-17 fa-wrench"></i></a>
-                        <a data-id="{{$one->idKH}}" class="delete-customer btn btn-danger d-block m-auto px-0 mt-2"><i class="fa-solid fs-17 fa-trash-can"></i></a>
+                        <a href="{{route('customer.edit',['id' => $one->maKH])}}" class="btn btn-success d-block m-auto px-0"><i class="fa-solid fs-17 fa-wrench"></i></a>
+                        <a data-id="{{$one->maKH}}" class="delete-customer btn btn-danger d-block m-auto px-0 mt-2"><i class="fa-solid fs-17 fa-trash-can"></i></a>
                     </td>
                 </tr>
                 @endforeach

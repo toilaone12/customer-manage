@@ -2,28 +2,22 @@
     <ul class="navbar-nav">
         <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
             @php $hours = date('H'); @endphp
-            <h1 class="welcome-text">@php echo $hours < 24 && $hours >= 18 ? 'Chào buổi tối' : ($hours < 18 && $hours >= 12 ? 'Chào buổi chiều' : 'Chào buổi sáng') @endphp, <span class="text-black fw-bold">John Doe</span></h1>
+            <h1 class="welcome-text">@php echo $hours < 24 && $hours >= 18 ? 'Chào buổi tối' : ($hours < 18 && $hours >= 12 ? 'Chào buổi chiều' : 'Chào buổi sáng') @endphp,
+            <span class="text-black fw-bold">{{$admin->hoTen}}</span></h1>
         </li>
     </ul>
     <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown d-none d-lg-block user-dropdown">
             <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <img class="img-xs rounded-circle" src="" alt="Profile image"> </a>
+                <span class="rounded bg-danger badge">{{$chuCaiDauTien}}</span>
+            </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                 <div class="dropdown-header text-center">
-                    <img class="img-md rounded-circle" src="" alt="Profile image">
-                    <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                    <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                    <p class="rounded bg-danger badge">{{$chuCaiDauTien}}</p>
+                    <p class="mb-1 mt-3 font-weight-semibold">{{$admin->tenDangNhap}}</p>
                 </div>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My
-                    Profile <span class="badge badge-pill badge-danger">1</span></a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
-                    Messages</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i>
-                    Activity</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
-                    FAQ</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> Hồ sơ <span class="badge badge-pill badge-danger">1</span></a>
+                <a href="{{route('admin.logout')}}" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Đăng xuất</a>
             </div>
         </li>
     </ul>

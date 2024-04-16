@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 15, 2024 lúc 07:30 PM
+-- Thời gian đã tạo: Th4 16, 2024 lúc 07:29 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 7.3.33
 
@@ -24,12 +24,55 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `admin`
+--
+
+CREATE TABLE `admin` (
+  `maTK` int(10) UNSIGNED NOT NULL,
+  `hoTen` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenDangNhap` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `matKhau` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin`
+--
+
+INSERT INTO `admin` (`maTK`, `hoTen`, `tenDangNhap`, `matKhau`, `created_at`, `updated_at`) VALUES
+(1, 'Thảo', 'thao', 'e10adc3949ba59abbe56e057f20f883e', '2024-04-16 17:17:22', '2024-04-16 17:17:12');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `contract`
+--
+
+CREATE TABLE `contract` (
+  `maHD` int(10) UNSIGNED NOT NULL,
+  `tenHD` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ngayLap` date NOT NULL,
+  `dieuKhoan` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `contract`
+--
+
+INSERT INTO `contract` (`maHD`, `tenHD`, `ngayLap`, `dieuKhoan`, `created_at`, `updated_at`) VALUES
+(1, 'a', '2024-04-19', 'a', '2024-04-16 15:49:56', '2024-04-16 15:49:56');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `customer`
 --
 
 CREATE TABLE `customer` (
-  `idKH` int(10) UNSIGNED NOT NULL,
-  `maKH` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `maKH` int(11) UNSIGNED NOT NULL,
   `tenKH` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phanLoai` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `diaChi` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -47,8 +90,8 @@ CREATE TABLE `customer` (
 -- Đang đổ dữ liệu cho bảng `customer`
 --
 
-INSERT INTO `customer` (`idKH`, `maKH`, `tenKH`, `phanLoai`, `diaChi`, `soDienThoai`, `email`, `maSoThue`, `nguoiLienHe`, `moTa`, `yeuCau`, `created_at`, `updated_at`) VALUES
-(1, 'KH1', 'a', 'a', 'a', '0387221331', 'baooson3005@gmail.com', 'a', 'a', 'a', 'a', '2024-04-15 17:10:08', '2024-04-15 17:10:08');
+INSERT INTO `customer` (`maKH`, `tenKH`, `phanLoai`, `diaChi`, `soDienThoai`, `email`, `maSoThue`, `nguoiLienHe`, `moTa`, `yeuCau`, `created_at`, `updated_at`) VALUES
+(1, 'a', 'a', 'a', '0387221331', 'baooson3005@gmail.com', 'a', 'a', 'a', 'a', '2024-04-15 17:10:08', '2024-04-15 17:10:08');
 
 -- --------------------------------------------------------
 
@@ -86,7 +129,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2024_04_15_232605_create_customer', 1);
+(4, '2024_04_15_232605_create_customer', 1),
+(5, '2024_04_16_181753_create_quote', 2),
+(6, '2024_04_16_222900_create_profile', 3),
+(7, '2024_04_16_222951_create_contract', 3),
+(8, '2024_04_17_000701_create_admin', 4);
 
 -- --------------------------------------------------------
 
@@ -99,6 +146,59 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `profile`
+--
+
+CREATE TABLE `profile` (
+  `maHSTT` int(10) UNSIGNED NOT NULL,
+  `loaiHS` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ngayLap` date NOT NULL,
+  `noiDung` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `canCu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `soTien` double NOT NULL,
+  `thoiHanThanhToan` date NOT NULL,
+  `hinhThucThanhToan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `profile`
+--
+
+INSERT INTO `profile` (`maHSTT`, `loaiHS`, `ngayLap`, `noiDung`, `canCu`, `soTien`, `thoiHanThanhToan`, `hinhThucThanhToan`, `created_at`, `updated_at`) VALUES
+(1, 'a', '2024-04-17', 'a', 'a', 33, '2024-04-18', 'a', '2024-04-16 16:25:28', '2024-04-16 16:25:28'),
+(2, 'ac', '2024-04-18', 'ac', 'ac', 33, '2024-04-26', 'ac', '2024-04-16 16:25:51', '2024-04-16 16:25:51'),
+(3, 'ád', '2024-04-17', '1', 'a', 333333312, '2024-04-18', 'a', '2024-04-16 16:51:07', '2024-04-16 16:51:07');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `quote`
+--
+
+CREATE TABLE `quote` (
+  `maBG` int(11) NOT NULL,
+  `tenBG` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mucTieu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phamViApDung` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ngayLap` date NOT NULL,
+  `thoiHanApDung` date NOT NULL,
+  `phuLuc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `quote`
+--
+
+INSERT INTO `quote` (`maBG`, `tenBG`, `mucTieu`, `phamViApDung`, `ngayLap`, `thoiHanApDung`, `phuLuc`, `created_at`, `updated_at`) VALUES
+(1, 'a', 'a', '1', '2024-04-16', '2024-04-18', 'a', '2024-04-16 11:42:18', '2024-04-16 11:42:18');
 
 -- --------------------------------------------------------
 
@@ -122,10 +222,22 @@ CREATE TABLE `users` (
 --
 
 --
+-- Chỉ mục cho bảng `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`maTK`);
+
+--
+-- Chỉ mục cho bảng `contract`
+--
+ALTER TABLE `contract`
+  ADD PRIMARY KEY (`maHD`);
+
+--
 -- Chỉ mục cho bảng `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`idKH`);
+  ADD PRIMARY KEY (`maKH`);
 
 --
 -- Chỉ mục cho bảng `failed_jobs`
@@ -147,6 +259,18 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Chỉ mục cho bảng `profile`
+--
+ALTER TABLE `profile`
+  ADD PRIMARY KEY (`maHSTT`);
+
+--
+-- Chỉ mục cho bảng `quote`
+--
+ALTER TABLE `quote`
+  ADD PRIMARY KEY (`maBG`);
+
+--
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
@@ -158,10 +282,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `maTK` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `contract`
+--
+ALTER TABLE `contract`
+  MODIFY `maHD` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT cho bảng `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `idKH` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `maKH` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -173,7 +309,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `profile`
+--
+ALTER TABLE `profile`
+  MODIFY `maHSTT` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `quote`
+--
+ALTER TABLE `quote`
+  MODIFY `maBG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `users`

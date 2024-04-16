@@ -10,6 +10,6 @@ class Customer extends Model
     use HasFactory;
     public $timestamp = true;
     protected $table = "customer";
-    protected $primaryKey = "idKH";
-    protected $fillable = ["maKH","tenKH",'phanLoai','diaChi',"soDienThoai","email","maSoThue","nguoiLienHe","moTa","yeuCau"];
+    protected $primaryKey = "maKH";
+    protected $fillable = ["tenKH",'phanLoai','diaChi',"soDienThoai","email","maSoThue","nguoiLienHe","moTa","yeuCau"];
 }

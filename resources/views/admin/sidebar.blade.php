@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<div class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin.dashboard')}}">
@@ -8,12 +8,12 @@
         </li>
         <li class="nav-item nav-category">Quản lý khách hàng</li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-bs-toggle="collapse" href="#customer" aria-expanded="false" aria-controls="customer">
                 <i class="menu-icon mdi mdi-floor-plan"></i>
                 <span class="menu-title">Quản lý khách hàng</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="customer">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{route('customer.list')}}">Danh sách khách hàng</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{route('customer.insert')}}">Thêm khách hàng</a></li>
@@ -21,75 +21,47 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item nav-category">Forms and Datas</li>
+        <li class="nav-item nav-category">Quản lý báo giá</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
                 <i class="menu-icon mdi mdi-card-text-outline"></i>
-                <span class="menu-title">Form elements</span>
+                <span class="menu-title">Quản lý báo giá</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="form-elements">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="../pages/forms/basic_elements.html">Basic Elements</a>
-                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('quote.list')}}">Danh sách báo giá</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('quote.insert')}}">Thêm báo giá</a></li>
                 </ul>
             </div>
         </li>
+        <li class="nav-item nav-category">Hợp đồng</li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#profile" aria-expanded="false" aria-controls="profile">
+                <i class="menu-icon mdi mdi-chart-line"></i>
+                <span class="menu-title">Hợp đồng</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="profile">
+                <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('contract.list')}}">Danh sách hợp đồng</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('contract.insert')}}">Thêm hợp đồng</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item nav-category">Hồ sơ thanh toán</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
                 <i class="menu-icon mdi mdi-chart-line"></i>
-                <span class="menu-title">Charts</span>
+                <span class="menu-title">Hồ sơ thanh toán</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="charts">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="../pages/charts/chartjs.html">ChartJs</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('profile.list')}}">Danh sách hồ sơ</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('profile.insert')}}">Thêm hồ sơ</a></li>
                 </ul>
             </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                <i class="menu-icon mdi mdi-table"></i>
-                <span class="menu-title">Tables</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="tables">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="../pages/tables/basic-table.html">Basic table</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-                <i class="menu-icon mdi mdi-layers-outline"></i>
-                <span class="menu-title">Icons</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="icons">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="../pages/icons/mdi.html">Mdi icons</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item nav-category">pages</li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                <span class="menu-title">User Pages</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="../pages/samples/login.html"> Login </a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item nav-category">help</li>
-        <li class="nav-item">
-            <a class="nav-link" href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
-                <i class="menu-icon mdi mdi-file-document"></i>
-                <span class="menu-title">Documentation</span>
-            </a>
         </li>
     </ul>
-</nav>
+</div>

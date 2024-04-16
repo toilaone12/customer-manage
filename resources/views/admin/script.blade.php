@@ -1,24 +1,23 @@
 <script src="{{asset('be/assets/vendors/js/vendor.bundle.base.js')}}"></script>
-<script src="{{asset('be/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
 <!-- endinject -->
 <!-- Plugin js for this page -->
-<script src="{{asset('be/assets/vendors/chart.js/Chart.min.js')}}"></script>
-<script src="{{asset('be/assets/vendors/progressbar.js/progressbar.min.js')}}"></script>
 <!-- End plugin js for this page -->
 <!-- inject:js -->
 <script src="{{asset('be/assets/js/off-canvas.js')}}"></script>
-<script src="{{asset('be/assets/js/hoverable-collapse.js')}}"></script>
-<script src="{{asset('be/assets/js/template.js')}}"></script>
+<!-- <script src="{{asset('be/assets/js/hoverable-collapse.js')}}"></script> -->
+<!-- <script src="{{asset('be/assets/js/template.js')}}"></script> -->
 <script src="{{asset('be/assets/js/settings.js')}}"></script>
-<script src="{{asset('be/assets/js/todolist.js')}}"></script>
+<!-- <script src="{{asset('be/assets/js/todolist.js')}}"></script> -->
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="{{asset('be/assets/js/jquery.cookie.js')}}" type="text/javascript"></script>
+<!-- <script src="{{asset('be/assets/js/jquery.cookie.js')}}" type="text/javascript"></script> -->
 <script src="{{asset('be/assets/js/dashboard.js')}}"></script>
-<script src="{{asset('be/assets/js/proBanner.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/4.1.0/autoNumeric.min.js"></script>
+<!-- <script src="{{asset('be/assets/js/proBanner.js')}}"></script> -->
 <script src="{{asset('be/assets/js/function.js')}}"></script>
 <script src="https://cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.1/dist/sweetalert2.min.js"></script>
 <script>
     let table = new DataTable('#myTable',{
         responsive: true,

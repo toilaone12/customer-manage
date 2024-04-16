@@ -19,13 +19,6 @@
                         <form class="forms-sample" method="POST" action="{{route('customer.add')}}">
                             @csrf
                             <div class="form-group">
-                                <label for="makh">Mã khách hàng</label>
-                                <input type="text" class="form-control" required name="maKH" id="makh" placeholder="Mã khách hàng" value="KH">
-                                @error('maKH')
-                                <p class="mt-2 text-danger fs-6">{{$message}}</p>
-                                @enderror
-                            </div>
-                            <div class="form-group">
                                 <label for="tenkh">Tên khách hàng</label>
                                 <input type="text" class="form-control" required name="tenKH" id="tenkh" placeholder="Tên khách hàng">
                                 @error('tenKH')

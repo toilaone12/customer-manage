@@ -23,7 +23,6 @@ class CustomerController extends Controller
     public function add(Request $request){
         $data = $request->all();
         Validator::make($data,[
-            'maKH' => ['required'],
             'tenKH' => ['required'],
             'phanLoai' => ['required'],
             'soDienThoai' => ['required', 'regex: /^(03[2-9]|05[6-9]|07[06-9]|08[1-9]|09[0-9]|01[2-9])[0-9]{7}$/'],
@@ -33,7 +32,6 @@ class CustomerController extends Controller
             'moTa' => ['required'],
             'yeuCau' => ['required'],
         ],[
-            'maKH.required' => 'Mã khách hàng buộc phải điền vào',
             'tenKH.required' => 'Họ và tên bắt buộc phải điền vào',
             'soDienThoai.required' => 'Số điện thoại bắt buộc phải điền vào',
             'soDienThoai.regex' => 'Số điện thoại phải nằm trong phạm vi Việt Nam',
@@ -44,10 +42,15 @@ class CustomerController extends Controller
             'moTa.required' => 'Mô tả bắt buộc phải điền vào',
             'yeuCau.required' => 'Yêu cầu bắt buộc phải điền vào',
         ])->validate();
-        unset($data['_token']);
-        $insert = Customer::create($data);
-        if($insert){
-            return redirect()->route('customer.insert')->with('noti','Thêm thành công thông tin khách hàng');
+        $check = Customer::where('tenKH',$data['tenKH'])->first();
+            if(!$check){
+            unset($data['_token']);
+            $insert = Customer::create($data);
+            if($insert){
+                return redirect()->route('customer.insert')->with('noti','Thêm thành công thông tin khách hàng');
+            }
+        }else{
+            return redirect()->route('customer.insert')->with('noti','Tên khách hàng tồn tại');
         }
     }
 
@@ -62,8 +65,8 @@ class CustomerController extends Controller
         $data = $request->all();
         $id = $request->get('id');
         $customer = Customer::find($id);
+        // dd($customer);
         Validator::make($data,[
-            'maKH' => ['required'],
             'tenKH' => ['required'],
             'phanLoai' => ['required'],
             'soDienThoai' => ['required', 'regex: /^(03[2-9]|05[6-9]|07[06-9]|08[1-9]|09[0-9]|01[2-9])[0-9]{7}$/'],
@@ -73,7 +76,6 @@ class CustomerController extends Controller
             'moTa' => ['required'],
             'yeuCau' => ['required'],
         ],[
-            'maKH.required' => 'Mã khách hàng buộc phải điền vào',
             'tenKH.required' => 'Họ và tên bắt buộc phải điền vào',
             'soDienThoai.required' => 'Số điện thoại bắt buộc phải điền vào',
             'soDienThoai.regex' => 'Số điện thoại phải nằm trong phạm vi Việt Nam',
@@ -84,7 +86,6 @@ class CustomerController extends Controller
             'moTa.required' => 'Mô tả bắt buộc phải điền vào',
             'yeuCau.required' => 'Yêu cầu bắt buộc phải điền vào',
         ])->validate();
-        $customer->maKH = $data['maKH'];
         $customer->tenKH = $data['tenKH'];
         $customer->phanLoai = $data['phanLoai'];
         $customer->diaChi = $data['diaChi'];
@@ -96,7 +97,7 @@ class CustomerController extends Controller
         $customer->yeuCau = $data['yeuCau'];
         $update = $customer->save();
         if($update){
-            return redirect()->route('customer.edit')->with('noti','Sửa thành công thông tin khách hàng');
+            return redirect()->route('customer.edit',['id' => $id])->with('noti','Sửa thành công thông tin khách hàng');
         }
     }
 

@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Sửa khách hàng</h4>
-                        <p class="card-description">
+                        <p class="card-description text-success">
                         @php
                             $noti = Session::get('noti');
                             if(isset($noti) && $noti){
@@ -16,15 +16,8 @@
                             }
                         @endphp
                         </p>
-                        <form class="forms-sample" method="POST" action="{{route('customer.update',['id' => $customer->idKH])}}">
+                        <form class="forms-sample" method="POST" action="{{route('customer.update',['id' => $customer->maKH])}}">
                             @csrf
-                            <div class="form-group">
-                                <label for="makh">Mã khách hàng</label>
-                                <input type="text" class="form-control" value="{{$customer->maKH}}" required name="maKH" id="makh" placeholder="Mã khách hàng" value="KH">
-                                @error('maKH')
-                                <p class="mt-2 text-danger fs-6">{{$message}}</p>
-                                @enderror
-                            </div>
                             <div class="form-group">
                                 <label for="tenkh">Tên khách hàng</label>
                                 <input type="text" class="form-control" value="{{$customer->tenKH}}" required name="tenKH" id="tenkh" placeholder="Tên khách hàng">

@@ -17,9 +17,6 @@ use Illuminate\Support\Facades\Session;
     <link rel="stylesheet" href="{{asset('be/assets/vendors/simple-line-icons/css/simple-line-icons.css')}}">
     <link rel="stylesheet" href="{{asset('be/assets/vendors/css/vendor.bundle.base.css')}}">
     <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{asset('be/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('be/assets/js/select.dataTables.min.css')}}">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('be/assets/css/vertical-layout-light/style.css')}}">
@@ -27,5 +24,6 @@ use Illuminate\Support\Facades\Session;
     <!-- endinject -->
     <link rel="icon" sizes="32x32" href="https://cdn-faadf.nitrocdn.com/PXDhkKuePccLPNjQsiSGnpotGfeqKVRu/assets/static/optimized/wp-content/uploads/2020/09/383ef0bf0ed3c976cd25f4d2a31a71c3.cropped-512x512-favicon-01-32x32.png">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.1/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
