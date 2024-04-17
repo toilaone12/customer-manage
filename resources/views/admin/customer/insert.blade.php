@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="sdt">Số điện thoại</label>
-                                <input type="phone" class="form-control" required name="soDienThoai" id="sdt" placeholder="Số điện thoại">
+                                <input type="number" class="form-control" min=0 required name="soDienThoai" id="sdt" placeholder="Số điện thoại">
                                 @error('soDienThoai')
                                 <p class="mt-2 text-danger fs-6">{{$message}}</p>
                                 @enderror

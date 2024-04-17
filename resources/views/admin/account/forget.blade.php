@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Session;
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Đăng ký</title>
+    <title>Quên mật khẩu</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('be/assets/vendors/feather/feather.css')}}">
     <link rel="stylesheet" href="{{asset('be/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
@@ -37,14 +37,13 @@ use Illuminate\Support\Facades\Session;
                                 <img src="{{asset('be/assets/images/logo.png')}}" alt="logo">
                             </div>
                             <h4>Chào mừng đến với trang quản trị</h4>
-                            <h6 class="fw-light">Đăng ký để vào trang quản trị</h6>
                             @php
                                 $noti = Session::get('noti');
                                 if(isset($noti) && $noti){
                                     echo $noti;
                                 }
                             @endphp
-                            <form class="pt-3" action="{{route('admin.registerIn')}}" method="POST">
+                            <form class="pt-3" action="{{route('account.update')}}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" name="tenDangNhap" required id="exampleInputEmail1" placeholder="Tên đăng nhập">
@@ -56,10 +55,10 @@ use Illuminate\Support\Facades\Session;
                                     <input type="password" class="form-control form-control-lg" name="kiemTraMatKhau" required id="exampleInputRePassword1" placeholder="Nhập lại mật khẩu">
                                 </div>
                                 <div class="mt-3">
-                                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Đăng ký</button>
+                                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Đổi mật khẩu</button>
                                 </div>
                                 <div class="text-center mt-4 fw-light">
-                                    Bạn đã có tài khoản? <a href="{{route('admin.login')}}" class="text-primary">Đăng nhập</a>
+                                    Bạn đã có tài khoản? <a href="{{route('account.login')}}" class="text-primary">Đăng nhập</a>
                                 </div>
                             </form>
                         </div>

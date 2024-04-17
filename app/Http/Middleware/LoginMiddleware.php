@@ -19,10 +19,11 @@ class LoginMiddleware
     public function handle(Request $request, Closure $next)
     {
         $id = Cookie::get('id');
+        // dd(1);
         if(isset($id) && $id){
             return $next($request);
         }else{
-            return redirect()->route('admin.login');
+            return redirect()->route('account.login');
         }
     }
 }

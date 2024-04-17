@@ -42,8 +42,8 @@
                     <td>{{date('d/m/Y',strtotime($one->thoiHanThanhToan))}}</td>
                     <td>{{$one->hinhThucThanhToan}}</td>
                     <td>
-                        <a href="{{route('profile.edit',['id' => $one->maHSTT])}}" class="btn btn-success d-block m-auto px-0"><i class="fa-solid fs-17 fa-wrench"></i></a>
-                        <a data-id="{{$one->maHSTT}}" class="delete-profile btn btn-danger d-block m-auto px-0 mt-2"><i class="fa-solid fs-17 fa-trash-can"></i></a>
+                        <a href="{{route('payment.edit',['id' => $one->maHSTT])}}" class="btn btn-success d-block m-auto px-0"><i class="fa-solid fs-17 fa-wrench"></i></a>
+                        <a data-id="{{$one->maHSTT}}" class="delete-payment btn btn-danger d-block m-auto px-0 mt-2"><i class="fa-solid fs-17 fa-trash-can"></i></a>
                     </td>
                 </tr>
                 @endforeach

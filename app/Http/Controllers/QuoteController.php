@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contract;
 use App\Models\Customer;
+use App\Models\Payment;
 use App\Models\Profile;
 use App\Models\Quote;
 use Illuminate\Http\Request;
@@ -72,10 +73,10 @@ class QuoteController extends Controller
             $listContract = Contract::where('maBG',$id)->get();
             if($listContract){
                 foreach($listContract as $key => $contract){
-                    $listProfile = Profile::where('maHD',$contract->maHD)->get();
-                    if($listProfile){
-                        foreach($listProfile as $key => $profile){
-                            $profile->delete();
+                    $listPayment = Payment::where('maHD',$contract->maHD)->get();
+                    if($listPayment){
+                        foreach($listPayment as $key => $payment){
+                            $payment->delete();
                         }
                         $contract->delete();
                     }else{

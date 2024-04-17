@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
@@ -19,14 +21,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('admin')->group(function(){
-    Route::get('/', [AdminController::class, 'login'])->name('admin.login');
-    Route::get('/register', [AdminController::class, 'register'])->name('admin.register');
-    Route::get('/forget', [AdminController::class, 'forget'])->name('admin.forget');
-    Route::post('/signIn', [AdminController::class, 'signIn'])->name('admin.signIn');
-    Route::post('/registerIn', [AdminController::class, 'registerIn'])->name('admin.registerIn');
-    Route::post('/updatePassword', [AdminController::class, 'updatePassword'])->name('admin.updatePassword');
+    Route::get('/', [AccountController::class, 'login'])->name('account.login');
+    Route::get('/register', [AccountController::class, 'register'])->name('account.register');
+    Route::get('/forget', [AccountController::class, 'forget'])->name('account.forget');
+    Route::get('/edit', [AccountController::class, 'edit'])->name('account.edit');
+    Route::post('/signIn', [AccountController::class, 'signIn'])->name('account.signIn');
+    Route::post('/registerIn', [AccountController::class, 'registerIn'])->name('account.registerIn');
+    Route::post('/update', [AccountController::class, 'update'])->name('account.update');
     Route::group(['middleware' => 'check.login'], function () {
-        Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+        Route::get('/logout', [AccountController::class, 'logout'])->name('account.logout');
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         //khach hang
         Route::prefix('customer')->group(function(){
@@ -56,13 +59,13 @@ Route::prefix('admin')->group(function(){
             Route::get('/delete', [ContractController::class, 'delete'])->name('contract.delete'); //xoa
         });
         //ho so
-        Route::prefix('profile')->group(function(){
-            Route::get('/list', [ProfileController::class, 'list'])->name('profile.list'); //danh sach
-            Route::get('/insert', [ProfileController::class, 'insert'])->name('profile.insert'); //form them
-            Route::post('/add', [ProfileController::class, 'add'])->name('profile.add'); //them
-            Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit'); //form sua
-            Route::post('/update', [ProfileController::class, 'update'])->name('profile.update'); //sua
-            Route::get('/delete', [ProfileController::class, 'delete'])->name('profile.delete'); //xoa
+        Route::prefix('payment')->group(function(){
+            Route::get('/list', [PaymentController::class, 'list'])->name('payment.list'); //danh sach
+            Route::get('/insert', [PaymentController::class, 'insert'])->name('payment.insert'); //form them
+            Route::post('/add', [PaymentController::class, 'add'])->name('payment.add'); //them
+            Route::get('/edit', [PaymentController::class, 'edit'])->name('payment.edit'); //form sua
+            Route::post('/update', [PaymentController::class, 'update'])->name('payment.update'); //sua
+            Route::get('/delete', [PaymentController::class, 'delete'])->name('payment.delete'); //xoa
         });
     });
 });

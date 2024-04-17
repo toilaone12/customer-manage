@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contract;
+use App\Models\Payment;
 use App\Models\Profile;
 use App\Models\Quote;
 use Illuminate\Http\Request;
@@ -65,10 +66,10 @@ class ContractController extends Controller
         $id = $request->get('id');
         $contract = Contract::find($id);
         if($contract){
-            $listProfile = Profile::where('maHD',$id)->get();
-            if($listProfile){
-                foreach($listProfile as $key => $profile){
-                    $profile->delete();
+            $listPayment = Payment::where('maHD',$id)->get();
+            if($listPayment){
+                foreach($listPayment as $key => $payment){
+                    $payment->delete();
                 }
             }
             $delete = $contract->delete();

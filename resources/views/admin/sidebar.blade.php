@@ -58,8 +58,8 @@
             </a>
             <div class="collapse" id="charts">
                 <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('profile.list')}}">Danh sách hồ sơ</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{route('profile.insert')}}">Thêm hồ sơ</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('payment.list')}}">Danh sách hồ sơ</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('payment.insert')}}">Thêm hồ sơ</a></li>
                 </ul>
             </div>
         </li>

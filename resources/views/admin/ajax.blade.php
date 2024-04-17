@@ -67,9 +67,9 @@
             })
         })
         //xoa ho so thanh toan
-        $('.delete-profile').on('click',function(e){
+        $('.delete-payment').on('click',function(e){
             e.preventDefault();
-            let url = "{{route('profile.delete')}}";
+            let url = "{{route('payment.delete')}}";
             let id = $(this).attr('data-id');
             let data = {
                 id: id,
@@ -90,7 +90,7 @@
         })
     });
 </script>
-@if(request()->is('admin/profile/insert'))
+@if(request()->is('admin/payment/insert'))
 <script>
     new AutoNumeric('#soTien', {
         digitGroupSeparator: '.',
@@ -100,7 +100,7 @@
         allowDecimalPadding: true // Giữ nguyên giá trị này
     });
 </script>
-@elseif(request()->is('admin/profile/edit'))
+@elseif(request()->is('admin/payment/edit'))
 <script>
 new AutoNumeric('#soTienMoi', {
     digitGroupSeparator: '.',
