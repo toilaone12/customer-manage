@@ -11,5 +11,5 @@ class Profile extends Model
     public $timestamp = true;
     protected $table = "profile";
     protected $primaryKey = "maHSTT";
-    protected $fillable = ["loaiHS",'ngayLap','noiDung','canCu','soTien','thoiHanThanhToan','hinhThucThanhToan'];
+    protected $fillable = ["loaiHS",'ngayLap','noiDung','canCu','soTien','thoiHanThanhToan','hinhThucThanhToan','maHD'];
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contract;
+use App\Models\Profile;
+use App\Models\Quote;
 use Illuminate\Http\Request;
 
 class ContractController extends Controller
@@ -11,12 +13,14 @@ class ContractController extends Controller
     public function list(){
         $title = "Danh sách hợp đồng";
         $list = Contract::all();
-        return view('admin.contract.list',compact('title','list'));
+        $listQuote = Quote::select('maBG', 'tenBG')->get();
+        return view('admin.contract.list',compact('title','list','listQuote'));
     }
 
     public function insert(){
         $title = "Thêm hợp đồng";
-        return view('admin.contract.insert',compact('title'));
+        $listQuote = Quote::select('maBG', 'tenBG')->get();
+        return view('admin.contract.insert',compact('title','listQuote'));
     }
 
     public function add(Request $request){
@@ -37,13 +41,15 @@ class ContractController extends Controller
         $id = $request->get('id');
         $title = "Sửa hợp đồng";
         $contract = Contract::find($id);
-        return view('admin.contract.edit',compact('title','contract'));
+        $listQuote = Quote::select('maBG', 'tenBG')->get();
+        return view('admin.contract.edit',compact('title','contract','listQuote'));
     }
 
     public function update(Request $request){
         $data = $request->all();
         $id = $request->get('id');
         $contract = Contract::find($id);
+        $contract->maBG = $data['maBG'];
         $contract->tenHD = $data['tenHD'];
         $contract->ngayLap = $data['ngayLap'];
         $contract->dieuKhoan = $data['dieuKhoan'];
@@ -58,11 +64,19 @@ class ContractController extends Controller
     public function delete(Request $request){
         $id = $request->get('id');
         $contract = Contract::find($id);
-        $delete = $contract->delete();
-        if($delete){
-            return response(['res' => 'success', 'title' => 'Xoá thông tin hợp đồng', 'icon' => 'success', 'text' => 'Xóa thông tin hợp đồng thành công'],200);
-        }else{
-            return response(['res' => 'error', 'title' => 'Xoá thông tin hợp đồng', 'error' => 'success', 'text' => 'Xóa thông tin hợp đồng không thành công'],200);
+        if($contract){
+            $listProfile = Profile::where('maHD',$id)->get();
+            if($listProfile){
+                foreach($listProfile as $key => $profile){
+                    $profile->delete();
+                }
+            }
+            $delete = $contract->delete();
+            if($delete){
+                return response(['res' => 'success', 'title' => 'Xoá thông tin hợp đồng', 'icon' => 'success', 'text' => 'Xóa thông tin hợp đồng thành công'],200);
+            }else{
+                return response(['res' => 'error', 'title' => 'Xoá thông tin hợp đồng', 'error' => 'success', 'text' => 'Xóa thông tin hợp đồng không thành công'],200);
+            }
         }
     }
 }

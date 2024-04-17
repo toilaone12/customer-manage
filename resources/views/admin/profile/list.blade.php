@@ -8,6 +8,7 @@
             <thead>
                 <tr>
                     <th>STT</th>
+                    <th>Tên hợp đồng</th>
                     <th>Loại hồ sơ</th>
                     <th>Ngày lập</th>
                     <th>Nội dung</th>
@@ -28,6 +29,11 @@
                 @endphp
                 <tr>
                     <td>{{$i}}</td>
+                    @foreach($listContract as $contract)
+                    @if($contract->maHD == $one->maHD)
+                    <td>{{$contract->tenHD}}</td>
+                    @endif
+                    @endforeach
                     <td>{{$one->loaiHS}}</td>
                     <td>{{date('d/m/Y',strtotime($one->ngayLap))}}</td>
                     <td>{{$one->noiDung}}</td>

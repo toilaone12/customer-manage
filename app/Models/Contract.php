@@ -11,5 +11,5 @@ class Contract extends Model
     public $timestamp = true;
     protected $table = "contract";
     protected $primaryKey = "maHD";
-    protected $fillable = ["tenHD",'ngayLap','dieuKhoan'];
+    protected $fillable = ["tenHD",'ngayLap','dieuKhoan',"maBG"];
 }

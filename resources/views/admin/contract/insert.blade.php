@@ -19,6 +19,17 @@
                         <form class="forms-sample" method="POST" action="{{route('contract.add')}}">
                             @csrf
                             <div class="form-group">
+                                <label for="maBG">Tên báo giá</label>
+                                <select name="maBG" id="maBG" class="form-select" required>
+                                    @foreach($listQuote as $key => $quote)
+                                    <option value="{{$quote->maBG}}">{{$quote->tenBG}}</option>
+                                    @endforeach
+                                </select>
+                                @error('maBG')
+                                <p class="mt-2 text-danger fs-6">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="tenHD">Tên hợp đồng</label>
                                 <input type="text" class="form-control" required name="tenHD" id="tenHD" placeholder="Tên hợp đồng">
                                 @error('tenHD')

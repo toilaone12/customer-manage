@@ -11,5 +11,5 @@ class Quote extends Model
     public $timestamp = true;
     protected $table = "quote";
     protected $primaryKey = "maBG";
-    protected $fillable = ["tenBG",'mucTieu','phamViApDung',"ngayLap","thoiHanApDung","phuLuc"];
+    protected $fillable = ["tenBG",'mucTieu','phamViApDung',"ngayLap","thoiHanApDung","phuLuc","maKH"];
 }

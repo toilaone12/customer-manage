@@ -8,6 +8,7 @@
             <thead>
                 <tr>
                     <th>STT</th>
+                    <th>Khách hàng</th>
                     <th>Tên báo giá</th>
                     <th>Mục tiêu</th>
                     <th>Phạm vi áp dụng</th>
@@ -27,6 +28,11 @@
                 @endphp
                 <tr>
                     <td>{{$i}}</td>
+                    @foreach($listCustomer as $customer)
+                    @if($customer->maKH == $one->maKH)
+                    <td>{{$customer->tenKH}}</td>
+                    @endif
+                    @endforeach
                     <td>{{$one->tenBG}}</td>
                     <td>{{$one->mucTieu}}</td>
                     <td>{{$one->phamViApDung}}</td>

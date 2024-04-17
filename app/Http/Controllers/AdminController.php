@@ -11,16 +11,7 @@ class AdminController extends Controller
     //
     public function dashboard(){
         $title = 'Trang chủ';
-        $id = Cookie::get('id');
-        if(isset($id) && $id){
-            $admin = Admin::find($id);
-            $chuCaiDauTien = explode(' ',$admin->hoTen);
-            $chuCaiDauTien = end($chuCaiDauTien);
-            $chuCaiDauTien = mb_substr($chuCaiDauTien,0,1,'UTF-8');
-            return view('admin.content',compact('title','admin','chuCaiDauTien'));
-        }else{
-            return redirect()->route('admin.login');
-        }
+        return view('admin.content',compact('title'));
     }
 
     public function login(){
@@ -41,6 +32,62 @@ class AdminController extends Controller
             return redirect()->route('admin.dashboard');
         }else{
             return redirect()->route('admin.login')->with('noti','Tài khoản hoặc mật khẩu không đúng');
+        }
+    }
+
+    public function register(){
+        return view('admin.register');
+    }
+
+    public function registerIn(Request $request){
+        $data = $request->all();
+        $check = Admin::where('tenDangNhap',$data['tenDangNhap'])->first();
+        if(!$check){
+            if($data['kiemTraMatKhau'] == $data['matKhau']){
+                $array = [
+                    'tenDangNhap' => $data['tenDangNhap'],
+                    'matKhau' => md5($data['matKhau']),
+                    'hoTen' => 'UID-'.rand(0,999999),
+                ];
+                $insert = Admin::create($array);
+                if($insert){
+                    return redirect()->route('admin.register')->with('noti','<p class="card-description text-success">Đăng ký thành công</p>');
+                }else{
+                    return redirect()->route('admin.register')->with('noti','<p class="card-description text-danger">Đăng ký thất bại</p>');
+                }
+            }else{
+                return redirect()->route('admin.register')->with('noti','<p class="card-description text-danger">Mật khẩu không trùng khớp</p>');
+            }
+        }else{
+            return redirect()->route('admin.register')->with('noti','<p class="card-description text-danger">Tài khoản này đã tồn tại</p>');
+        }
+    }
+
+    public function forget(){
+        return view('admin.forget');
+    }
+
+    public function updatePassword(Request $request){
+        $data = $request->all();
+        if(!isset($data['hoTen'])){
+            $admin = Admin::where('tenDangNhap',$data['tenDangNhap'])->first();
+            if($admin){
+                if($data['kiemTraMatKhau'] == $data['matKhau']){
+                    $admin->matKhau = md5($data['matKhau']);
+                    $update = $admin->save();
+                    if($update){
+                        return redirect()->route('admin.forget')->with('noti','<p class="card-description text-success">Đổi mật khẩu thành công</p>');
+                    }else{
+                        return redirect()->route('admin.forget')->with('noti','<p class="card-description text-danger">Đổi mật khẩu thất bại</p>');
+                    }
+                }else{
+                    return redirect()->route('admin.forget')->with('noti','<p class="card-description text-danger">Mật khẩu không trùng khớp</p>');
+                }
+            }else{
+                return redirect()->route('admin.forget')->with('noti','<p class="card-description text-danger">Tài khoản này không tồn tại</p>');
+            }
+        }else{
+
         }
     }
 }

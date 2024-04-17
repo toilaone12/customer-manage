@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contract;
 use App\Models\Customer;
+use App\Models\Profile;
+use App\Models\Quote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -104,11 +107,35 @@ class CustomerController extends Controller
     public function delete(Request $request){
         $id = $request->get('id');
         $customer = Customer::find($id);
-        $delete = $customer->delete();
-        if($delete){
-            return response(['res' => 'success', 'title' => 'Xoá thông tin khách hàng', 'icon' => 'success', 'text' => 'Xóa thông tin khách hàng thành công'],200);
-        }else{
-            return response(['res' => 'error', 'title' => 'Xoá thông tin khách hàng', 'error' => 'success', 'text' => 'Xóa thông tin khách hàng không thành công'],200);
+        if($customer){
+            $listQuote = Quote::where('maKH',$id)->get();
+            if($listQuote){ //bao gia ton tai khach hang nay
+                foreach($listQuote as $key => $quote){
+                    $listContract = Contract::where('maBG',$quote->maBG)->get();
+                    if($listContract){
+                        foreach($listContract as $key => $contract){
+                            $listProfile = Profile::where('maHD',$contract->maHD)->get();
+                            if($listProfile){
+                                foreach($listProfile as $key => $profile){
+                                    $profile->delete();
+                                }
+                                $contract->delete();
+                            }else{
+                                $contract->delete();
+                            }
+                        }
+                        $quote->delete();
+                    }else{
+                        $quote->delete();
+                    }
+                }
+            }
+            $delete = $customer->delete();
+            if($delete){
+                return response(['res' => 'success', 'title' => 'Xoá thông tin khách hàng', 'icon' => 'success', 'text' => 'Xóa thông tin khách hàng thành công'],200);
+            }else{
+                return response(['res' => 'error', 'title' => 'Xoá thông tin khách hàng', 'error' => 'success', 'text' => 'Xóa thông tin khách hàng không thành công'],200);
+            }
         }
     }
 }

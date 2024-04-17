@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contract;
+use App\Models\Customer;
+use App\Models\Profile;
 use App\Models\Quote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -11,12 +14,14 @@ class QuoteController extends Controller
     public function list(){
         $title = "Danh sách báo giá";
         $list = Quote::all();
-        return view('admin.quote.list',compact('title','list'));
+        $listCustomer = Customer::select('maKH', 'tenKH')->get();
+        return view('admin.quote.list',compact('title','list','listCustomer'));
     }
 
     public function insert(){
         $title = "Thêm báo giá";
-        return view('admin.quote.insert',compact('title'));
+        $listCustomer = Customer::select('maKH', 'tenKH')->get();
+        return view('admin.quote.insert',compact('title','listCustomer'));
     }
 
     public function add(Request $request){
@@ -37,13 +42,15 @@ class QuoteController extends Controller
         $id = $request->get('id');
         $title = "Sửa báo giá";
         $quote = Quote::find($id);
-        return view('admin.quote.edit',compact('title','quote'));
+        $listCustomer = Customer::select('maKH', 'tenKH')->get();
+        return view('admin.quote.edit',compact('title','quote','listCustomer'));
     }
 
     public function update(Request $request){
         $data = $request->all();
         $id = $request->get('id');
         $quote = Quote::find($id);
+        $quote->maKH = $data['maKH'];
         $quote->tenBG = $data['tenBG'];
         $quote->mucTieu = $data['mucTieu'];
         $quote->phamViApDung = $data['phamViApDung'];
@@ -61,11 +68,27 @@ class QuoteController extends Controller
     public function delete(Request $request){
         $id = $request->get('id');
         $quote = Quote::find($id);
-        $delete = $quote->delete();
-        if($delete){
-            return response(['res' => 'success', 'title' => 'Xoá thông tin báo giá', 'icon' => 'success', 'text' => 'Xóa thông tin báo giá thành công'],200);
-        }else{
-            return response(['res' => 'error', 'title' => 'Xoá thông tin báo giá', 'error' => 'success', 'text' => 'Xóa thông tin báo giá không thành công'],200);
+        if($quote){
+            $listContract = Contract::where('maBG',$id)->get();
+            if($listContract){
+                foreach($listContract as $key => $contract){
+                    $listProfile = Profile::where('maHD',$contract->maHD)->get();
+                    if($listProfile){
+                        foreach($listProfile as $key => $profile){
+                            $profile->delete();
+                        }
+                        $contract->delete();
+                    }else{
+                        $contract->delete();
+                    }
+                }
+            }
+            $delete = $quote->delete();
+            if($delete){
+                return response(['res' => 'success', 'title' => 'Xoá thông tin báo giá', 'icon' => 'success', 'text' => 'Xóa thông tin báo giá thành công'],200);
+            }else{
+                return response(['res' => 'error', 'title' => 'Xoá thông tin báo giá', 'error' => 'success', 'text' => 'Xóa thông tin báo giá không thành công'],200);
+            }
         }
     }
 }

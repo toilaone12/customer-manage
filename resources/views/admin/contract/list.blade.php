@@ -8,6 +8,7 @@
             <thead>
                 <tr>
                     <th>STT</th>
+                    <th>Tên báo giá</th>
                     <th>Tên hợp đồng</th>
                     <th>Ngày lập</th>
                     <th>Điều khoản</th>
@@ -24,6 +25,11 @@
                 @endphp
                 <tr>
                     <td>{{$i}}</td>
+                    @foreach($listQuote as $quote)
+                    @if($quote->maBG == $one->maBG)
+                    <td>{{$quote->tenBG}}</td>
+                    @endif
+                    @endforeach
                     <td>{{$one->tenHD}}</td>
                     <td>{{date('d/m/Y',strtotime($one->ngayLap))}}</td>
                     <td>{{$one->dieuKhoan}}</td>

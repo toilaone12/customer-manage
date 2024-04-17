@@ -19,6 +19,17 @@
                         <form class="forms-sample" method="POST" action="{{route('contract.update',['id' => $contract->maHD])}}">
                             @csrf
                             <div class="form-group">
+                                <label for="maBG">Tên báo giá</label>
+                                <select name="maBG" id="maBG" class="form-select" required>
+                                    @foreach($listQuote as $key => $quote)
+                                    <option value="{{$quote->maBG}}" {{$quote->maBG == $contract->maBG ? 'selected' : ''}}>{{$quote->tenBG}}</option>
+                                    @endforeach
+                                </select>
+                                @error('maBG')
+                                <p class="mt-2 text-danger fs-6">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="tenHD">Tên hợp đồng</label>
                                 <input type="text" class="form-control" required value="{{$contract->tenHD}}" name="tenHD" id="tenHD" placeholder="Tên hợp đồng">
                                 @error('tenHD')
@@ -27,7 +38,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="ngayLap">Ngày lập</label>
-                                <input type="date" class="form-control" min="{{date('Y-m-d')}}" required value="{{date('Y-m-d',strtotime($contract->tenHD))}}" name="ngayLap" id="ngayLap" placeholder="Ngày lập">
+                                <input type="date" class="form-control" min="{{date('Y-m-d')}}" required value="{{date('Y-m-d',strtotime($contract->ngayLap))}}" name="ngayLap" id="ngayLap" placeholder="Ngày lập">
                                 @error('ngayLap')
                                 <p class="mt-2 text-danger fs-6">{{$message}}</p>
                                 @enderror

@@ -1,3 +1,12 @@
+@php
+use App\Models\Admin;
+use Illuminate\Support\Facades\Cookie;
+$id = Cookie::get('id');
+$admin = Admin::find($id);
+$chuCaiDauTien = explode(' ',$admin->hoTen);
+$chuCaiDauTien = end($chuCaiDauTien);
+$chuCaiDauTien = mb_substr($chuCaiDauTien,0,1,'UTF-8');
+@endphp
 <div class="navbar-menu-wrapper d-flex align-items-top">
     <ul class="navbar-nav">
         <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">

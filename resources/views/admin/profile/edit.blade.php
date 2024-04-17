@@ -19,6 +19,17 @@
                         <form class="forms-sample" method="POST" action="{{route('profile.update',['id' => $profile->maHSTT])}}">
                             @csrf
                             <div class="form-group">
+                                <label for="maHD">Tên hợp đồng</label>
+                                <select name="maHD" id="maHD" class="form-select" required>
+                                    @foreach($listContract as $key => $contract)
+                                    <option value="{{$contract->maHD}}" {{$contract->maHD == $profile->maHD ? 'selected' : ''}}>{{$contract->tenHD}}</option>
+                                    @endforeach
+                                </select>
+                                @error('maHD')
+                                <p class="mt-2 text-danger fs-6">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="loaiHS">Loại hồ sơ</label>
                                 <input type="text" class="form-control" required value="{{$profile->loaiHS}}" name="loaiHS" id="loaiHS" placeholder="Loại hồ sơ">
                                 @error('loaiHS')
